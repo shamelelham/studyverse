@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>StudyVerse</title>
+<title>Register</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -24,7 +25,7 @@ body{
     background:linear-gradient(to bottom right, #6fa8e8, #7bb2f0);
 }
 
-/* Login Card */
+/* Register Card */
 .card{
     width:430px;
     background:#f4f4f4;
@@ -37,15 +38,9 @@ body{
 /* Title */
 .card h2{
     color:#1f4db8;
-    font-size:48px;
+    font-size:42px;
     font-weight:400;
-    margin-bottom:10px;
-}
-
-.card p{
-    color:#555;
-    margin-bottom:20px;
-    font-size:18px;
+    margin-bottom:30px;
 }
 
 /* Input Fields */
@@ -54,36 +49,38 @@ body{
     margin-bottom:18px;
 }
 
-.input-box input{
+.input-box input,
+.input-box select{
     width:100%;
     padding:16px 18px;
     border:1px solid #cfcfcf;
     border-radius:12px;
     outline:none;
-    font-size:18px;
+    font-size:17px;
     background:white;
 }
 
-.input-box input:focus{
+.input-box input:focus,
+.input-box select:focus{
     border-color:#1f4db8;
 }
 
 /* Button */
-.login-btn{
+.signup-btn{
     width:100%;
     padding:16px;
     border:none;
     border-radius:12px;
     background:#7d1423;
     color:white;
-    font-size:24px;
+    font-size:22px;
     font-weight:500;
     cursor:pointer;
-    margin-top:8px;
+    margin-top:10px;
     transition:0.3s;
 }
 
-.login-btn:hover{
+.signup-btn:hover{
     background:#5f0f1a;
 }
 
@@ -93,10 +90,8 @@ body{
 }
 
 .links a{
-    display:block;
     text-decoration:none;
     color:black;
-    margin:12px 0;
     font-size:17px;
     transition:0.3s;
 }
@@ -104,6 +99,7 @@ body{
 .links a:hover{
     color:#1f4db8;
 }
+
 </style>
 </head>
 
@@ -113,25 +109,51 @@ body{
 
   <div class="card">
 
-    <h2>StudyVerse</h2>
+    <h2>Register</h2>
 
-    <p>University System Login</p>
-
-     <div class="input-box">
-        <input type="email" id="email" placeholder="Email">
+    <div class="input-box">
+      <input id="name" type="text" placeholder="Name">
     </div>
 
     <div class="input-box">
-        <input type="password" id="password" placeholder="Password">
+      <input id="email" type="email" placeholder="Email">
     </div>
 
-    <button class="login-btn" onclick="login()"> 
-      Log In
-    </button>
+    <div class="input-box">
+      <input
+        id="password"
+        type="password"
+        placeholder="Password">
+    </div>
 	
-	<div class="links">
-      <a href="register.html">Create Account</a>
-      <a href="forgot-password.html">Forgot Password?</a>
+	<div class="input-box">
+      <select id="role">
+
+        <option value="Student">
+          Student
+        </option>
+
+        <option value="Lecturer">
+          Lecturer
+        </option>
+
+        <option value="Admin">
+          Admin
+        </option>
+
+      </select>
+	</div>
+	
+	<button class="signup-btn" onclick="signup()">
+      Sign Up
+    </button>
+
+    <div class="links">
+      <p>
+        <a href="login.html">
+          Back to Login
+        </a>
+      </p>
     </div>
 
   </div>
@@ -140,7 +162,10 @@ body{
 
 <!--JavaScript-->
 <script>
-function login() {
+function signup() {
+
+  let name =
+    document.getElementById("name").value.trim();
 
   let email =
     document.getElementById("email").value.trim();
@@ -148,34 +173,36 @@ function login() {
   let password =
     document.getElementById("password").value.trim();
 
-  /* EMPTY FIELDS */
-  if(email === "" || password === "") {
+  let role =
+    document.getElementById("role").value;
 
-    alert("⚠️ Please fill in email and password!");
+  if(name === "" || email === "" || password === "") {
+
+    alert("Please fill in all fields!");
     return;
   }
 
-  let user =
-    JSON.parse(localStorage.getItem(email));
+  if(localStorage.getItem(email)) {
 
-  if(!user) {
-
-    alert("⚠️ User not found!");
+    alert("Account already exists!");
     return;
   }
 
-  if(user.password !== password) {
-
-    alert("⚠️ Incorrect password!");
-    return;
-  }
+  let user = {
+    name:name,
+    email:email,
+    password:password,
+    role:role
+  };
 
   localStorage.setItem(
-    "currentUser",
+    email,
     JSON.stringify(user)
   );
 
-  window.location.href = "profile.html";
+  alert("Registration successful!");
+
+  window.location.href = "login.html";
 }
 </script>
 
