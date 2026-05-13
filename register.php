@@ -22,29 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (!$name || !$email || !$password || !$confirm) {
     $error = 'Please fill in all fields.';
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $error = 'Invalid email format.';
+    $error = 'INVALID EMAIL FORMAT.';
   } elseif (strlen($password) < 6) {
-    $error = 'Password must be at least 6 characters.';
+    $error = 'PASSWORD MUST BE AT LEAST 6 CHARACTERS.';
   } elseif ($password !== $confirm) {
-    $error = 'Password does not match';
+    $error = 'PASSWORD DOES NOT MATCH';
   } elseif (!in_array($role, ['Student', 'Lecturer'])) {
-    $error = 'Invalid role.';
+    $error = 'INVALID ROLE.';
   } else {
     //check email dah ade belom
     $chk = $pdo->prepare("SELECT id FROM users WHERE email = ?");
     $chk ->execute([$email]);
     if ($chk->fetch()) {
-      $error = 'This email is already registered. Please log in.';
+      $error = 'THIS EMAIL IS ALREADY REGISTERED. PLEASE LOGIN.';
     } else {
       // insert user
       $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, level) VALUES (?,?,?,?,?)");
       $stmt->execute([$name, $email, $password, $role, $level]);
-      $success = 'Account created successfully! Please log in.';
+      $success = 'ACCOUNT CREATED SUCCESSFULLY! PLEASE LOGIN.';
     }
   }
 }
 
-$level = ['PRIMARY SCHOOL', 'SECONDARY SCHOOL', 'STPM', 'UNIVERSITY'];
+$level = ['Primary School', 'Secondary School', 'STPM', 'University'];
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ $level = ['PRIMARY SCHOOL', 'SECONDARY SCHOOL', 'STPM', 'UNIVERSITY'];
             <img src="<?= BASE_URL ?>/assets/images/logo.png" 
                   alt="StudyVerse Logo"
                   class="logo-img">
-            <h1>StudyVerse</h1>
+            <h1>STUDYVERSE</h1>
             <p>YOUR UNIVERSE OF LEARNING</p>
         </div>
 
@@ -111,7 +111,7 @@ $level = ['PRIMARY SCHOOL', 'SECONDARY SCHOOL', 'STPM', 'UNIVERSITY'];
                     </div>
 
                     <div class="form-group">
-                        <label>CONFRIM PASSWORD *</label>
+                        <label>CONFIRM PASSWORD *</label>
                         <input type="password" name="confirm"
                                placeholder="••••••••" required>
                     </div>
