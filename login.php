@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <img src="<?= BASE_URL ?>/assets/images/logo.png" 
                 alt="StudyVerse Logo"
                 class="logo-img">
-            <h1>StudyVerse</h1>
+            <h1>STUDYVERSE</h1>
             <p>YOUR UNIVERSE OF LEARNING</p>
         </div>
 
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div style="text-align:center;margin-top:14px;">
                     <a href="<?= BASE_URL ?>/forgot.php" style="font-size:12px;color:var(--muted);">
-                        FORGET?
+                        FORGOT?
                     </a>
                 </div>
             </form>
@@ -151,7 +151,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
 </body>
-
-//settle
-
 </html>
