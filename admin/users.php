@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/db.php';
+require_once '../config/db.php';
 requireAdmin();
 
 // ban / unban
@@ -13,7 +13,7 @@ if (isset($_GET['ban'])) {
 if (isset($_GET['unban'])) {
     $uid = (int)$_GET['unban'];
     $pdo->prepare("UPDATE users SET is_active = 1 WHERE id = ?")->execute([$uid]);
-    setFlash('success', 'User berjaya di-unban.');
+    setFlash('success', 'User successfully unbanned.');
     header('Location: ' . BASE_URL . '/admin/users.php');
     exit;
 }
@@ -63,7 +63,7 @@ $banned     = $pdo->query("SELECT COUNT(*) FROM users WHERE is_active = 0")->fet
 
         <div class="page-header">
             <h1>MANAGE USER 👥</h1>
-            <p><?= $totalUsers ?> users · <?= $banned ?> BANNED</p>
+            <p><?= $totalUsers ?> users · <?= $banned ?> banned</p>
         </div>
 
         <?php showFlash(); ?>
