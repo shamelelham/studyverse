@@ -98,7 +98,7 @@ $recentPapers = $pdo->query("
             <div class="section-label">QUICK ACTIONS</div>
             <div class="flex-center gap-10 flex-wrap">
                 <a href="<?= BASE_URL ?>/admin/papers.php?filter=pending" class="btn btn-primary">
-                    ⚡ REVIEW PENDINGg (<?= $pendingPapers ?>)
+                    ⚡ REVIEW PENDING (<?= $pendingPapers ?>)
                 </a>
                 <a href="<?= BASE_URL ?>/admin/users.php"  class="btn btn-outline">👥 MANAGE USERS</a>
                 <a href="<?= BASE_URL ?>/admin/rooms.php"  class="btn btn-ghost">⬡ MONITOR ROOMS</a>
