@@ -87,7 +87,7 @@ $years  = range(date('Y'), 2015);
         <?php if ($success): ?><div class="alert alert-success"><?= e($success) ?></div><?php endif; ?>
 
         <div class="card mb-24" style="max-width:680px;">
-            <form method="POST" enctype="multipart/form-data">
+            <form id="uploadForm" method="POST" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label>TITLE *</label>
@@ -150,8 +150,7 @@ $years  = range(date('Y'), 2015);
 
                 <div class="flex-center gap-10">
                     <button type="submit" class="btn btn-primary">UPLOAD</button>
-                    <button type="reset"  class="btn btn-ghost"
-                            onclick="document.getElementById('fileName').textContent=''">RESET</button>
+                    <button type="button" class="btn btn-ghost" onclick="resetUploadForm()">RESET</button>
                 </div>
             </form>
         </div>
@@ -197,5 +196,26 @@ $years  = range(date('Y'), 2015);
     </main>
 </div>
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
+<script>
+function resetUploadForm() {
+    var form = document.getElementById('uploadForm');
+    if (!form) return;
+
+    form.querySelectorAll('input[type="text"], textarea').forEach(function (el) {
+        el.value = '';
+    });
+
+    var fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        fileInput.value = '';
+    }
+
+    var fileName = document.getElementById('fileName');
+    if (fileName) {
+        fileName.textContent = '';
+        fileName.style.color = '';
+    }
+}
+</script>
 </body>
 </html>
