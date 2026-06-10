@@ -98,7 +98,7 @@ $recentPapers = $pdo->query("
             <div class="section-label">QUICK ACTIONS</div>
             <div class="flex-center gap-10 flex-wrap">
                 <a href="<?= BASE_URL ?>/admin/papers.php?filter=pending" class="btn btn-primary">
-                    ⚡ REVIEW PENDING (<?= $pendingPapers ?>)
+                    ⚡ REVIEW PENDINGg (<?= $pendingPapers ?>)
                 </a>
                 <a href="<?= BASE_URL ?>/admin/users.php"  class="btn btn-outline">👥 MANAGE USERS</a>
                 <a href="<?= BASE_URL ?>/admin/rooms.php"  class="btn btn-ghost">⬡ MONITOR ROOMS</a>
@@ -116,14 +116,18 @@ $recentPapers = $pdo->query("
                     <a href="<?= BASE_URL ?>/admin/users.php" style="font-size:12px;color:var(--accent);">VIEW ALL →</a>
                 </div>
                 <?php foreach ($recentUsers as $u): ?>
-                <div class="paper-item">
+                <div class="paper-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
                     <div class="flex-center gap-10">
                         <div class="avatar avatar-sm <?= $u['role']==='Lecturer'?'avatar-amber':'avatar-accent' ?>">
                             <?= strtoupper(substr($u['name'], 0, 1)) ?>
                         </div>
                         <div>
-                            <div class="paper-title"><?= e($u['name']) ?></div>
-                            <div class="paper-meta"><?= e($u['role']) ?> · <?= e($u['level']) ?></div>
+                            <div style="font-weight:500;font-size:14px;color:var(--text);">
+                                <?= e($u['name']) ?>
+                            </div>
+                            <div style="font-size:12px;color:var(--muted);">
+                                <?= e($u['role']) ?> · <?= e($u['level']) ?>
+                            </div>
                         </div>
                     </div>
                     <span class="badge <?= $u['is_active']?'badge-teal':'badge-danger' ?>">
@@ -142,18 +146,22 @@ $recentPapers = $pdo->query("
                 <?php foreach ($recentPapers as $p):
                     $sc = match($p['status']) { 'approved'=>'badge-teal','rejected'=>'badge-danger',default=>'badge-amber' };
                 ?>
-                <div class="paper-item">
+                <div class="paper-item" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
                     <div>
-                        <div class="paper-title"><?= e($p['subject']) ?></div>
-                        <div class="paper-meta"><?= e($p['level']) ?> · by <?= e($p['uploader']) ?></div>
+                        <div style="font-weight:500;font-size:14px;color:var(--text);">
+                            <?= e($p['title']) ?>
+                        </div>
+                        <div style="font-size:12px;color:var(--muted);">
+                            <?= e($p['level']) ?> · <?= e($p['subject']) ?> · by <?= e($p['uploader']) ?>
+                        </div>
                     </div>
-                    <span class="badge <?= $sc ?>"><?= ucfirst($p['status']) ?></span>
+                    <span class="badge <?= $sc ?>">
+                        <?= ucfirst($p['status']) ?>
+                    </span>
                 </div>
                 <?php endforeach; ?>
             </div>
-
         </div>
-
     </main>
 </div>
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>

@@ -238,7 +238,7 @@ $levels = ['Primary School', 'Secondary School', 'STPM', 'University'];
                 <div>
                     <div style="font-weight:500;font-size:14px;color:var(--text);"><?= e($r['name']) ?></div>
                     <div style="font-size:12px;color:var(--muted);">
-                        <?= $r['mc'] ?> members · <?= e($r['level']) ?> · Owner: <?= e($r['owner_name']) ?>
+                        <?= $r['mc'] ?> members · <?= e($r['level']) ?> · Owner : <?= e($r['owner_name']) ?>
                     </div>
                 </div>
             </div>

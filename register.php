@@ -169,8 +169,5 @@ function toggleLevel() {
 toggleLevel();
 </script>
 </body>
-
-//setlle
-
 </html>
 

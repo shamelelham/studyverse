@@ -620,6 +620,13 @@ textarea {
 
 /* papers items */
 
+.paper-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
 /* search bar */
 .search-bar {
   display: grid;

@@ -6,7 +6,7 @@ $user = currentUser();
 
 $viewId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-/* POST COMMENT */
+/* post comment */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment']) && $viewId) {
     $comment = trim($_POST['comment']);
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment']) && $viewId
     exit;
 }
 
-/* SINGLE PAPER VIEW */
+/* single paper view */
 $paper = null;
 $comments = [];
 
@@ -51,7 +51,7 @@ if ($viewId) {
     }
 }
 
-/* PAPER LIST */
+/* papers list */
 $search = trim($_GET['search'] ?? '');
 $filterLevel = $_GET['level'] ?? 'All';
 $filterType = $_GET['type'] ?? 'All';
@@ -115,7 +115,7 @@ $types = ['All', 'Past Year', 'Trial', 'Revision', 'Other'];
 
     <?php if ($viewId && !empty($paper)): ?>
 
-        <a href="<?= BASE_URL ?>/papers.php" class="btn btn-ghost btn-sm mb-16">← BACK TO PAPERS</a>
+        <a href="<?= BASE_URL ?>/papers.php" class="btn btn-ghost btn-sm mb-16">← BACK</a>
 
         <div class="card mb-16">
             <div class="flex-between mb-16">
@@ -128,8 +128,8 @@ $types = ['All', 'Past Year', 'Trial', 'Revision', 'Other'];
                     </div>
                 </div>
 
-                <a href="<?= BASE_URL ?>/<?= e($paper['file_path']) ?>" download class="btn btn-teal btn-sm">
-                    ⬇ DOWNLOAD
+                <a href="<?= BASE_URL ?>/<?= e($paper['file_path']) ?>" download class="btn btn-teal btn-smF">
+                    DOWNLOAD
                 </a>
             </div>
 
@@ -236,28 +236,30 @@ $types = ['All', 'Past Year', 'Trial', 'Revision', 'Other'];
                 <div class="loading">NO PAPERS FOUND.</div>
             <?php else: ?>
                 <?php foreach ($papers as $p): ?>
-                    <div class="paper-item">
+                    <div class="paper-item" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;">
                         <div class="flex-center gap-10" style="flex:1;">
-                            <div class="paper-icon">📄</div>
                             <div>
-                                <div class="paper-title"><?= e($p['subject']) ?></div>
-                                <div class="paper-meta">
+                                <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px;">
+                                    <?= e($p['title']) ?>
+                                </div>
+                                <div style="font-size:12px;color:var(--muted);">
                                     <?= e($p['level']) ?> · <?= e($p['year']) ?> · BY <?= e($p['uploader_name']) ?>
                                 </div>
-                                <div style="margin-top:4px;">
+                                <div style="margin-top:6px;">
                                     <span class="badge <?= typeBadge($p['type']) ?>">
-                                        <?= e($p['type']) ?>
+                                         <?= strtoupper(e($p['type']))?>
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        <div style="text-align:right;flex-shrink:0;">
-                            <div style="color:var(--muted);font-size:11px;">
+                        <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+                            <div style="font-size:11px;color:var(--muted);">
                                 <?= e($p['views']) ?> VIEWS
                             </div>
-                            <a href="?id=<?= e($p['id']) ?>" class="btn btn-outline btn-sm" style="margin-top:6px;">
-                                VIEW →
+                            <a href="?id=<?= e($p['id']) ?>"
+                               class="btn btn-outline btn-sm">
+                                VIEW
                             </a>
                         </div>
                     </div>

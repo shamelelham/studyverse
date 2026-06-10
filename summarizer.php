@@ -172,7 +172,7 @@ $savedSummaries = $savedStmt->fetchAll();
                 <div class="card" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
                     <div style="text-align:center;color:var(--muted);">
                         <div style="font-size:32px;margin-bottom:8px;">✦</div>
-                        <div style="font-size:13px;">YPUR SUMMARY APPEAR HERE</div>
+                        <div style="font-size:13px;">YOUR SUMMARY APPEAR HERE</div>
                     </div>
                 </div>
             </div>
@@ -197,7 +197,7 @@ $savedSummaries = $savedStmt->fetchAll();
 
             <div id="summaryList">
                 <?php if (empty($savedSummaries)): ?>
-                    <div class="loading">NO SAVED YET. SUMMARIZE YPUR NOTES FIRST!</div>
+                    <div class="loading">NO SAVED YET. SUMMARIZE YOUR NOTES FIRST!</div>
                 <?php else: ?>
                     <?php foreach ($savedSummaries as $s):
                         // decode saved summary json

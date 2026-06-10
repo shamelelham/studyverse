@@ -24,7 +24,7 @@ $faqs = [
         'a' => 'Lecturers can create and manage study rooms. Students can track subject progress. Both can upload papers, use the AI Summarizer and send messages.'
     ],
     [
-        'q' => 'My paper was rejected — what should I do?',
+        'q' => 'My paper was rejected what should I do?',
         'a' => 'Check the rejection reason in the Upload page. Fix the paper content and upload it again. Make sure the paper is relevant and complete.'
     ],
     [

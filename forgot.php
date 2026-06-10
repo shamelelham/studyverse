@@ -1,6 +1,5 @@
 <?php
 require_once 'config/db.php';
-
 // redirect kalau dah login
 if (isLoggedIn()) {
     redirect('/dashboard.php');
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reset_password'])) {
             <div style="margin-bottom:16px;">
                 <div style="font-weight:500;color:var(--text);margin-bottom:4px;">SET NEW PASSWORD</div>
                 <div style="font-size:13px;color:var(--muted);">
-                    EMAIL :<span style="color:var(--accent-l);"><?= e($_SESSION['reset_email'] ?? '') ?></span>
+                    EMAIL : <span style="color:var(--accent-l);"><?= e($_SESSION['reset_email'] ?? '') ?></span>
                 </div>
             </div>
 
@@ -154,7 +153,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reset_password'])) {
 </div>
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
 </body>
-
-// settle
-
 </html>

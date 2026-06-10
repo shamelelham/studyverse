@@ -101,7 +101,7 @@ $rejectedCount = $pdo->query("SELECT COUNT(*) FROM papers WHERE status='rejected
         <!-- filter tabs & search -->
         <div class="flex-between mb-20" style="flex-wrap:wrap;gap:10px;">
             <div class="flex-center gap-8">
-                <?php foreach (['ALL','PENDING','APPROVED','REJECTED'] as $f): ?>
+                <?php foreach (['All','pending','approved','rejected'] as $f): ?>
                 <a href="?filter=<?= $f ?>"
                    class="btn <?= $filter===$f?'btn-primary':'btn-ghost' ?> btn-sm">
                     <?= ucfirst($f) ?>
@@ -129,10 +129,11 @@ $rejectedCount = $pdo->query("SELECT COUNT(*) FROM papers WHERE status='rejected
                     <div class="flex-between" style="flex-wrap:wrap;gap:10px;">
                         <!-- paper info -->
                         <div class="flex-center gap-14" style="flex:1;">
-                            <div class="paper-icon">📄</div>
                             <div>
-                                <div class="paper-title"><?= e($p['title']) ?></div>
-                                <div class="paper-meta">
+                                <div style="font-weight:500;font-size:14px;color:var(--text);">
+                                    <?= e($p['title']) ?>
+                                </div>
+                                <div style="font-size:12px;color:var(--muted);">
                                     <?= e($p['level']) ?> · <?= e($p['subject']) ?> · <?= $p['year'] ?>
                                     · by <?= e($p['uploader']) ?>
                                     · <?= date('d M Y', strtotime($p['created_at'])) ?>

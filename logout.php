@@ -41,5 +41,3 @@ session_destroy();
 </style>
 </body>
 </html>
-
-//settle

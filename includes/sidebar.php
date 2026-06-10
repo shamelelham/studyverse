@@ -25,7 +25,7 @@ $lecturerNav = [
     ['page' => 'UPLOAD', 'href' => BASE_URL.'/upload.php', 'icon' => '⬆', 'label' => 'UPLOAD PAPER'],
     ['page' => 'SUMMARIZER', 'href' => BASE_URL.'/summarizer.php', 'icon' => '✦', 'label' => 'AI SUMMARIZER'],
     ['page' => 'STUDYROOMS', 'href' => BASE_URL.'/studyroom.php', 'icon' => '⬡', 'label' => 'STUDY ROOMS'],
-    ['page' => 'MESSAGE', 'href' => BASE_URL.'/messages.php', 'icon' => '✉', 'label' => 'STUDY ROOMS'],
+    ['page' => 'MESSAGE', 'href' => BASE_URL.'/messages.php', 'icon' => '✉', 'label' => 'MESSAGES'],
 ];
 
 $bottomNav = [

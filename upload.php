@@ -87,7 +87,7 @@ $years  = range(date('Y'), 2015);
         <?php if ($success): ?><div class="alert alert-success"><?= e($success) ?></div><?php endif; ?>
 
         <div class="card mb-24" style="max-width:680px;">
-            <form id="uploadForm" method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" id="uploadForm">
 
                 <div class="form-group">
                     <label>TITLE *</label>
@@ -166,12 +166,16 @@ $years  = range(date('Y'), 2015);
                     default    => 'badge-amber',
                 };
             ?>
-            <div class="paper-item">
+            <div class="paper-item" style="display:flex;justify-content:space-between;align-items:center;">
                 <div class="flex-center gap-10" style="flex:1;">
                     <div class="paper-icon">📄</div>
                     <div>
-                        <div class="paper-title"><?= e($p['title']) ?></div>
-                        <div class="paper-meta"><?= $p['year'] ?> · <?= e($p['level']) ?></div>
+                        <div style="font-weight:500;font-size:14px;color:var(--text);">
+                            <?= e($p['title']) ?>
+                        </div>
+                        <div style="font-size:12px;color:var(--muted);">
+                            <?= $p['year'] ?> · <?= e($p['level']) ?>
+                        </div>
                         <?php if ($p['status'] === 'rejected' && $p['reject_reason']): ?>
                         <div style="color:var(--danger);font-size:11px;margin-top:3px;">
                             REASON : <?= e($p['reject_reason']) ?>
@@ -179,7 +183,7 @@ $years  = range(date('Y'), 2015);
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="flex-center gap-8">
+                <div class="flex-center gap-8" style="margin-left:auto;">
                     <span class="badge <?= $statusBadge ?>"><?= ucfirst($p['status']) ?></span>
                     <!-- delete own paper -->
                     <form method="POST" action="<?= BASE_URL ?>/api/delete_paper.php" style="display:inline;">
@@ -196,25 +200,12 @@ $years  = range(date('Y'), 2015);
     </main>
 </div>
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
+
 <script>
 function resetUploadForm() {
-    var form = document.getElementById('uploadForm');
-    if (!form) return;
-
-    form.querySelectorAll('input[type="text"], textarea').forEach(function (el) {
-        el.value = '';
-    });
-
-    var fileInput = document.getElementById('fileInput');
-    if (fileInput) {
-        fileInput.value = '';
-    }
-
-    var fileName = document.getElementById('fileName');
-    if (fileName) {
-        fileName.textContent = '';
-        fileName.style.color = '';
-    }
+    document.getElementById('uploadForm').reset();
+    document.getElementById('fileInput').value = '';
+    document.getElementById('fileName').textContent = '';
 }
 </script>
 </body>
